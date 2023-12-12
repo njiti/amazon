@@ -1,4 +1,6 @@
 import 'package:amazon/constants/global_variables.dart';
+import 'package:amazon/features/auth/auth_screen.dart';
+import 'package:amazon/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,9 +26,8 @@ class MyApp extends StatelessWidget {
           )
         )
       ),
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Hello'),),
-          body: const Center(child: Text('Flutter Demo Home Page'))),
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: const AuthScreen(),
     );
   }
 }
