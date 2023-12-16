@@ -39,7 +39,7 @@ class _AuthScreenState extends State<AuthScreen>{
       backgroundColor: GlobalVariables.greyBackgroundColor,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -54,7 +54,7 @@ class _AuthScreenState extends State<AuthScreen>{
                 tileColor: _auth == Auth.signup
                     ? GlobalVariables.backgroundColor
                     : GlobalVariables.greyBackgroundColor,
-                title: Text(
+                title: const Text(
                     'Create Account',
                   style: TextStyle(
                       fontWeight: FontWeight.bold
@@ -73,7 +73,7 @@ class _AuthScreenState extends State<AuthScreen>{
               ),
               if(_auth == Auth.signup)
                 Container(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   color: GlobalVariables.backgroundColor,
                   child: Form(
                     key: _signInFormKey,
@@ -103,7 +103,10 @@ class _AuthScreenState extends State<AuthScreen>{
                   ),
                 ),
               ListTile(
-                title: Text(
+                tileColor: _auth == Auth.signin
+                  ? GlobalVariables.backgroundColor
+                  : GlobalVariables.greyBackgroundColor,
+                title: const Text(
                   'Sign-In',
                   style: TextStyle(
                       fontWeight: FontWeight.bold
@@ -122,7 +125,7 @@ class _AuthScreenState extends State<AuthScreen>{
               ),
               if(_auth == Auth.signin)
               Container(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 color: GlobalVariables.backgroundColor,
                 child: Form(
                   key: _signInFormKey,

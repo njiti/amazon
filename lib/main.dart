@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: const ColorScheme.light(
           primary: GlobalVariables.secondaryColor,
         ),
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           elevation: 0,
           iconTheme: IconThemeData(
             color: Colors.black,
