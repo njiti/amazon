@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:amazon/constants/utils.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -39,6 +41,35 @@ class AuthService {
           onSuccess: () {
             showSnackBar(context, 'Account created!');
           },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+  }
+
+  // sign in user
+  void signInUser({
+    required BuildContext context,
+    required String email,
+    required String password,
+  }) async {
+    try{
+      http.Response res = await http.post(
+        Uri.parse('$uri/api/token/'),
+        body: jsonEncode({
+          'email': email,
+          'password': password,
+        }),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      );
+      print(res.body);
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+        },
       );
     } catch (e) {
       showSnackBar(context, e.toString());
