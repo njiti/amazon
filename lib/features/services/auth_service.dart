@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:amazon/constants/utils.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/error_handling.dart';
 import '../../constants/global_variables.dart';
@@ -68,7 +69,9 @@ class AuthService {
       httpErrorHandle(
         response: res,
         context: context,
-        onSuccess: () {
+        onSuccess: () async {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
         },
       );
     } catch (e) {
