@@ -1,7 +1,10 @@
 import 'dart:convert';
 
 import 'package:amazon/constants/utils.dart';
+import 'package:amazon/home/screens/home_screen.dart';
+import 'package:amazon/providers/user_provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/error_handling.dart';
@@ -71,7 +74,13 @@ class AuthService {
         context: context,
         onSuccess: () async {
           SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
+          Provider.of<UserProvider>(context, listen: false).setUser(res.body);
+          await prefs.setString('x-auth-token', jsonDecode(res.body)['token']);
+          Navigator.pushNamedAndRemoveUntil(
+              context,
+              HomeScreen.routeName,
+              (route) => false,
+          );
         },
       );
     } catch (e) {
